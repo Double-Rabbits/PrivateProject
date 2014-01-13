@@ -77,25 +77,48 @@ function  CameraAxisControl(){
 	}
 }
 
-//標準的なジャンプコントロール
-function jumpControl (){
-	if (Input.GetButton("Jump") && controller.isGrounded) {
+// ジャンプ
+function jump(){
+	if(actionIntervalTime > (Time.realtimeSinceStartup - actionStartTime)){
+		return;
+	}
+	if(controller.isGrounded) {
 		animator.SetBool("Jump", true);
 		moveDirection.y = jumpSpeed;
 		speed -= (addSpeed * decSpeedCoefficient / decSpeedJumpCoefficient);
-	}
-}
-
-//攻撃コントロール
-function attackControl (){
-	if (Input.GetButton("Attack")){
-		if(actionIntervalTime > (Time.realtimeSinceStartup - actionStartTime)){
-			return;
-		}
-		animator.SetBool("Attack", true);
 		actionStartTime = Time.realtimeSinceStartup;
 	}
 }
+
+//ジャンプコントロール キー
+function jumpControl (){
+	if (Input.GetButton("Jump")) {
+		jump();
+	}
+}
+//ジャンプコントロール ボタン
+//function jumpButton (){
+//	jump();
+//}
+
+//攻撃
+function attack(){
+	if(actionIntervalTime > (Time.realtimeSinceStartup - actionStartTime)){
+		return;
+	}
+	animator.SetBool("Attack", true);
+	actionStartTime = Time.realtimeSinceStartup;
+}
+//攻撃コントロール キー
+function attackControl (){
+	if (Input.GetButton("Attack")){
+		attack();
+	}
+}
+//攻撃コントロール ボタン
+//function attackButton (){
+//	attack();
+//}
 
 //移動処理 
 function attachMove (){
