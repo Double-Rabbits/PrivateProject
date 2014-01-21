@@ -5,19 +5,23 @@ var script : samuzai;
 var animator : Animator;
 var touch: Touch;
 
-function OnMouseDown () {
+function Start () {
 	targetObj = GameObject.Find("samuzai");
 	script = targetObj.GetComponent(samuzai);
+}
+
+function OnMouseDown () {
 	script.attack();
 }
 
 function Update () {
 	if(Input.touchCount > 0){
-		touch = Input.GetTouch(0);
-		if(guiTexture.HitTest(touch.position))
-        {
-        	Debug.Log('script.attack');
-			script.attack();
-        }
+		for(var i=0 ; i<Input.touchCount ; i++){
+			touch = Input.GetTouch(i);
+			if(guiTexture.HitTest(touch.position))
+	        {
+				script.attack();
+	        }
+		}
 	}
 }

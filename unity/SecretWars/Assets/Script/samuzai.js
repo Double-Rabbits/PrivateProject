@@ -17,6 +17,7 @@ private var attackFlag : boolean;
 private var actionStartTime : float;
 private var decSpeedJumpCoefficient : float;
 private var afterAttackSpeed : float;
+private var joystick : Joystick;
 
 function Start () {
 	actionStartTime = 0;
@@ -26,6 +27,7 @@ function Start () {
 	animator.SetBool("Jump", false);
 	animator.SetFloat("Speed", speed);
 	controller = GetComponent(CharacterController);
+	joystick = FindObjectOfType(Joystick) as Joystick;
 }
 
 function Update () {
@@ -52,6 +54,10 @@ function  CameraAxisControl(){
 		var right : Vector3 = Camera.mainCamera.transform.TransformDirection(Vector3.right);
 
 		moveDirection = Input.GetAxis("Horizontal")*right + Input.GetAxis("Vertical")*forward;
+
+		if(Input.GetAxis("Fire1")){
+			moveDirection = Vector3(joystick.position.x, 0, joystick.position.y);
+		}
 	   	 
 	   	if(!attackFlag){
 			if(moveDirection.magnitude > 0.01){
