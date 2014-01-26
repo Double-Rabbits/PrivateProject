@@ -102,10 +102,6 @@ function jumpControl (){
 		jump();
 	}
 }
-//ジャンプコントロール ボタン
-//function jumpButton (){
-//	jump();
-//}
 
 //攻撃
 function attack(){
@@ -121,10 +117,6 @@ function attackControl (){
 		attack();
 	}
 }
-//攻撃コントロール ボタン
-//function attackButton (){
-//	attack();
-//}
 
 //移動処理 
 function attachMove (){
@@ -146,4 +138,13 @@ function attachRotation(){
 	   
 	   transform.rotation = Quaternion.LookRotation(newDir);
 	}
+}
+
+// 敵キャラクターとの衝突
+function OnControllerColliderHit(hit : ControllerColliderHit) {
+	if(hit.gameObject.tag != "Enemy"){
+    	return;
+	}
+	var hitController:CharacterController = hit.gameObject.GetComponent(CharacterController);
+	hitController.Move(hit.moveDirection * Time.deltaTime);
 }
