@@ -8,12 +8,13 @@ var jumpSpeed : float;
 var gravity : float;
 var rotateSpeed : float;
 var actionIntervalTime : float;
+var attackFlag : boolean;
+var enemyScript : Skeleton;
 
 private var moveDirection : Vector3 = Vector3.zero;
 private var controller:CharacterController;
 private var animator : Animator;
 private var state : AnimatorStateInfo;
-private var attackFlag : boolean;
 private var actionStartTime : float;
 private var decSpeedJumpCoefficient : float;
 private var afterAttackSpeed : float;
@@ -38,6 +39,11 @@ function Update () {
 	if(state.IsName("Base Layer.Attack")){
 		animator.SetBool("Attack", false);
 		attackFlag = true;
+	}else{
+		attackFlag = false;
+		if(enemyScript){
+			enemyScript.damageFlag = false;
+		}
 	}
 	
 	CameraAxisControl();
@@ -75,7 +81,6 @@ function  CameraAxisControl(){
 			}
 		}else{
 			speed = afterAttackSpeed;
-			attackFlag = false;
 		}
 
 		animator.SetFloat("Speed", speed);
@@ -147,4 +152,10 @@ function OnControllerColliderHit(hit : ControllerColliderHit) {
 	}
 	var hitController:CharacterController = hit.gameObject.GetComponent(CharacterController);
 	hitController.Move(hit.moveDirection * Time.deltaTime);
+}
+
+// 敵キャラクターに攻撃がヒット
+function hitAttack(other : Collider){
+	enemyScript = other.GetComponent(other.gameObject.name);
+	enemyScript.damageFlag = true;
 }

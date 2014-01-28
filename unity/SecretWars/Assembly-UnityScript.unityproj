@@ -49,6 +49,7 @@
      <Compile Include="Assets\Script\ButtonA.js" />
      <Compile Include="Assets\Script\ButtonB.js" />
      <Compile Include="Assets\Script\Skeleton.js" />
+     <Compile Include="Assets\Script\Sward.js" />
      <Compile Include="Assets\Script\samuzai.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
