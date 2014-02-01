@@ -41,9 +41,6 @@ function Update () {
 		attackFlag = true;
 	}else{
 		attackFlag = false;
-		if(enemyScript){
-			enemyScript.damageFlag = false;
-		}
 	}
 	
 	CameraAxisControl();

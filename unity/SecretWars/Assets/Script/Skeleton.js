@@ -19,13 +19,19 @@ function Start () {
 
 function Update()
 {
-	state = animator.GetCurrentAnimatorStateInfo(0);
 	animator.SetBool("DamagedFlag", damageFlag);	
 	if(!damageFlag){
 		direction = 1;
-	}else{
+	}
+		
+	state = animator.GetCurrentAnimatorStateInfo(0);
+	if(state.IsName("Base Layer.Damage")){
 		direction = -5;
-	}	
+		if(state.normalizedTime > state.length){
+				damageFlag = false;
+				direction = 0;
+		}
+	}
 	
 	var moveDirection = Vector3.zero;
 	var  targetDirection :Vector3 =  Vector3(targetObj.transform.position.x,this.transform.position.y,targetObj.transform.position.z);
