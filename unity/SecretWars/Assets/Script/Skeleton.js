@@ -9,12 +9,14 @@ var direction : float;
 private var controller:CharacterController;
 private var animator : Animator;
 private var state : AnimatorStateInfo;
+private var defaultSpeed;
 
 function Start () {
 	controller = GetComponent(CharacterController);
 	targetObj = GameObject.Find("samuzai");
 	animator = GetComponent(Animator);
 	direction = 1;
+	defaultSpeed = speed;
 }
 
 function Update()
@@ -44,5 +46,19 @@ function Update()
 function OnControllerColliderHit(hit : ControllerColliderHit) {
 	if(hit.gameObject.tag != "Player"){
     	return;
+	}
+}
+
+function OnTriggerStay(other : Collider) {
+	if(!damageFlag){
+		if(other.gameObject.tag == "Player"){
+    	speed = 1.2;
+		}
+	}
+}
+
+function OnTriggerExit(other : Collider) {
+	if(other.gameObject.tag == "Player"){
+    	speed = defaultSpeed;
 	}
 }
