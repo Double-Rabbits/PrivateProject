@@ -20,17 +20,16 @@ function Start () {
 function Update()
 {
 	animator.SetBool("DamagedFlag", damageFlag);	
-	if(!damageFlag){
-		direction = 1;
-	}
 		
 	state = animator.GetCurrentAnimatorStateInfo(0);
 	if(state.IsName("Base Layer.Damage")){
-		direction = -5;
+		direction = -5.5;
 		if(state.normalizedTime > state.length){
 				damageFlag = false;
-				direction = 0;
+				direction = -0.2;
 		}
+	}else{
+		direction = 1;
 	}
 	
 	var moveDirection = Vector3.zero;
@@ -39,14 +38,11 @@ function Update()
 	moveDirection += transform.forward*1;
 	moveDirection.y -= gravity * Time.deltaTime;
 	controller.Move(moveDirection * Time.deltaTime  *  speed * direction);
+	animator.SetFloat("Speed", speed);
 }
 
 function OnControllerColliderHit(hit : ControllerColliderHit) {
 	if(hit.gameObject.tag != "Player"){
     	return;
 	}
-	//Debug.Log(hit.gameObject.name);
-	var hitController:CharacterController = hit.gameObject.GetComponent(CharacterController);
-	Debug.Log(hit.moveDirection);
-	hitController.Move(hit.moveDirection * Time.deltaTime *0.5);
 }
