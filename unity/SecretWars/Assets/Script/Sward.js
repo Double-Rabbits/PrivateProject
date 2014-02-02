@@ -12,7 +12,6 @@ function OnTriggerEnter(other : Collider) {
 	if(other.gameObject.tag != "Enemy"){
     	return;
 	}
-    Debug.Log("OnTriggerEnter!");
 }
 
 function OnTriggerStay(other : Collider) {
@@ -29,5 +28,4 @@ function OnTriggerExit(other : Collider) {
 	if(other.gameObject.tag != "Enemy"){
     	return;
 	}
-    Debug.Log("OnTriggerExit!");
 }
