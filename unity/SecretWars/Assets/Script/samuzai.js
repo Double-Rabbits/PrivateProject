@@ -53,8 +53,8 @@ function Update () {
 //カメラ軸に沿った移動コントロール
 function  CameraAxisControl(){
 	if (controller.isGrounded) {
-		var forward : Vector3 = Camera.mainCamera.transform.TransformDirection(Vector3.forward);
-		var right : Vector3 = Camera.mainCamera.transform.TransformDirection(Vector3.right);
+		var forward : Vector3 = Camera.main.transform.TransformDirection(Vector3.forward);
+		var right : Vector3 = Camera.main.transform.TransformDirection(Vector3.right);
 
 		moveDirection = Input.GetAxis("Horizontal")*right + Input.GetAxis("Vertical")*forward;
 
