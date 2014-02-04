@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\ButtonA.js" />
      <Compile Include="Assets\Script\ButtonB.js" />
+     <Compile Include="Assets\Script\MainCamera.js" />
      <Compile Include="Assets\Script\Skeleton.js" />
      <Compile Include="Assets\Script\SkeletonColliderScript.js" />
      <Compile Include="Assets\Script\Sward.js" />
