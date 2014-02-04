@@ -1,15 +1,28 @@
-﻿#pragma strict
+﻿
+#pragma strict
 
 var player : GameObject;
 
+private var mostLeftPosition : float;
+private var mostRightPosition : float;
+
 function Start () {
-	var y : float =transform.position.y;
-	var z : float =transform.position.z;
-Debug.Log(y);
-Debug.Log(z);
+	var wallLeft : GameObject = GameObject.Find('wall_left');
+	var wallRight : GameObject = GameObject.Find('wall_right');
+	mostLeftPosition = Camera.main.orthographicSize*-1;
+	mostRightPosition = Camera.main.orthographicSize;
+	Debug.Log(Camera.main.rect);
+	Debug.Log(mostRightPosition);
 }
 
 function Update () {
-	//プレイヤーどの位置に置くか
-	transform.position = Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+	// x座標のみプレイヤーに合わせる
+	var positionX : float = player.transform.position.x;
+	Debug.Log(Camera.main.rect);
+	if(positionX < mostLeftPosition){
+		positionX = mostLeftPosition;
+	}if(positionX > mostRightPosition){
+		positionX = mostRightPosition;
+	}
+	transform.position = Vector3(positionX, transform.position.y, transform.position.z);
 }
