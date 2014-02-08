@@ -18,11 +18,20 @@ function Start () {
 function Update () {
 	// x座標のみプレイヤーに合わせる
 	var positionX : float = player.transform.position.x;
-	//Debug.Log(Camera.main.rect);
+	// 画面端調整
 	if(positionX < mostLeftPosition){
 		positionX = mostLeftPosition;
 	}if(positionX > mostRightPosition){
 		positionX = mostRightPosition;
 	}
 	transform.position = Vector3(positionX, transform.position.y, transform.position.z);
+}
+
+function zoomIn(){
+
+	Debug.Log("zoomIn");
+}
+
+function zoomOut(){
+	Debug.Log("zoomOut");
 }
