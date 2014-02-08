@@ -9,16 +9,16 @@ private var mostRightPosition : float;
 function Start () {
 	var wallLeft : GameObject = GameObject.Find('wall_left');
 	var wallRight : GameObject = GameObject.Find('wall_right');
-	mostLeftPosition = Camera.main.orthographicSize*-1;
-	mostRightPosition = Camera.main.orthographicSize;
-	Debug.Log(Camera.main.rect);
-	Debug.Log(mostRightPosition);
+	var height = Camera.main.orthographicSize * 2.0;
+	var width = height * Screen.width / Screen.height;
+	mostLeftPosition = wallLeft.transform.position.x + width/2;
+	mostRightPosition = wallRight.transform.position.x - width/2;
 }
 
 function Update () {
 	// x座標のみプレイヤーに合わせる
 	var positionX : float = player.transform.position.x;
-	Debug.Log(Camera.main.rect);
+	//Debug.Log(Camera.main.rect);
 	if(positionX < mostLeftPosition){
 		positionX = mostLeftPosition;
 	}if(positionX > mostRightPosition){
