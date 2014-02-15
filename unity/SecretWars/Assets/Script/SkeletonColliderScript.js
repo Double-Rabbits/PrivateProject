@@ -6,7 +6,7 @@ var mainCamera : Camera;
 private var parentScript : Skeleton;
 private var cameraScript : MainCamera;
 private var runRadius : float;
-private var runRadiusRate : float = 0.6;
+private var runRadiusRate : float = 0.5;
 
 function Start () {
 	var  parent : GameObject = this.gameObject.transform.parent.gameObject;
